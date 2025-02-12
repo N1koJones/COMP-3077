@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <!-- QUESTION 1 ANSWERED HERE ============================================================= -->
+        <title>Question 1 by NIKO JONES</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        <!-- QUESTION 3 ANSWERED HERE ============================================================= -->
+        <meta name="author" content="Niko Jones">
+        <meta name="description" content="This is for the first midterm of comp 3077.">
+        <meta name="keywords" content="Niko, Loves, Keywords">
+
+        <!-- CSS Part of Document -->
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                text-align: center;
+            }
+            #date-and-time {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 20px;
+            }
+            #seedInput {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 20px;
+            }
+            #multiplicationTable {
+                margin-top: 20px;
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+                border-collapse: collapse;
+            }
+            #multiplicationTable th, #multiplicationTable td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+            #multiplicationTable tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            #multiplicationTable tr:hover {
+                background-color: #ddd;
+            }
+        </style>
+    </head>
+
+
+    
+    <body>
+        <!-- QUESTION 2 ANSWERED HERE ============================================================= -->
+        <span class="material-symbols-outlined">home</span>
+        
+        <!-- QUESTION 5.1 ANSWERED HERE ============================================================ -->
+        <div id="date-and-time"></div>
+        
+        <!-- QUESTION 5.2 ANSWERED HERE ============================================================ -->
+        <div id="seedInput">
+            <label for="seedInputBox">Enter a digit:</label>
+            <input type="text" id="seedInputBox" value="">
+        </div>
+        
+        <!-- QUESTION 5.3 ANSWERED HERE ============================================================ -->
+        <div id="multiplicationTableContainer">
+            <table id="multiplicationTable"></table>
+        </div>
+
+        <!-- JS part of document -->
+        <script>
+
+            // QUESTION 4 ANSWERED HERE =============================================================
+            window.onload = function() {
+                alert("Welcome to Question 1"); // alerting user
+                
+                let firstName = "";
+                while (!firstName.match(/^[A-Za-z]+$/)) { // regex stuff for alpha only exact
+                    firstName = prompt("Please enter your first name:");
+                    if (!firstName) {
+                        alert("First name cannot be empty.");   // empty result
+                    } else if (!firstName.match(/^[A-Za-z]+$/)) {
+                        alert("First name must contain only alpha characters."); // has non-alpha
+                    }
+                }
+
+                function updateDateTime() {
+                    const now = new Date();
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }; // full date
+                    const formattedDateTime = now.toLocaleDateString('en-US', options);
+                    document.getElementById('date-and-time').innerHTML = `${formattedDateTime} - ${firstName} is logged in`;
+                }
+
+                setInterval(updateDateTime, 1000); // Update every second.
+                updateDateTime();
+
+                // QUESTION 5.2 JS ============================================================
+                const seedInputBox = document.getElementById('seedInputBox');
+                let previousValue = Math.floor(Math.random() * 10);
+                seedInputBox.value = previousValue;
+
+                seedInputBox.addEventListener('input', function() {
+                    const currentValue = seedInputBox.value;
+                    if (!/^\d$/.test(currentValue)) {
+                        seedInputBox.value = previousValue;
+                    } else {
+                        previousValue = currentValue;
+                        updateMultiplicationTable(currentValue);
+                    }
+                });
+
+                function updateMultiplicationTable(seed) {
+                    const table = document.getElementById('multiplicationTable');
+                    table.innerHTML = '';
+                    for (let i = 1; i <= 10; i++) {
+                        const row = table.insertRow();
+                        const cell1 = row.insertCell(0);
+                        const cell2 = row.insertCell(1);
+                        cell1.innerHTML = `${seed} x ${i}`;
+                        cell2.innerHTML = seed * i;
+                    }
+                }
+
+                updateMultiplicationTable(previousValue);
+            };
+
+
+        </script>
+    </body>
+</html>
