@@ -1,0 +1,301 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Default Theme (Light) */
+:root {
+    --background-color: #f9f9f9;
+    --title-color: #4CAF50;
+    --text-color: #333;
+    --header-background: #4CAF50;
+    --header-text-color: white;
+    --card-background: #fff;
+    --card-border-color: #ddd;
+    --button-background: #4CAF50;
+    --button-text-color: white;
+    --button-hover-background: #45a049;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --background-color: #121212; /* Base background */
+    --title-color: #4CAF50;
+    --text-color: #e0e0e0; /* Main text color */
+    --header-background: #1e1e1e; /* Header and footer background */
+    --header-text-color: #4CAF50; /* Header text color */
+    --card-background: #1e1e1e; /* Card background */
+    --card-border-color: #333; /* Card border */
+    --button-background: #4CAF50; /* Button background */
+    --button-text-color: #121212; /* Button text */
+    --button-hover-background: #66bb6a; /* Button hover */
+}
+
+/* High Visibility Theme */
+[data-theme="high-visibility"] {
+    --background-color: #ffffff; /* Pure white background */
+    --title-color: #000000;
+    --text-color: #000000; /* Pure black text */
+    --header-background: #ffffff; /* White header background */
+    --header-text-color: #000000; /* Black header text */
+    --card-background: #ffffff; /* White card background */
+    --card-border-color: #000000; /* Black card border */
+    --button-background: #000000; /* Black button background */
+    --button-text-color: #ffffff; /* White button text */
+    --button-hover-background: #333333; /* Darker gray for hover */
+}
+
+/* Apply Variables */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 0 20px;
+    transition: background-color 0.2s ease, color 0.2s ease; /* Smooth transition for background and text color */
+}
+
+header, footer, main, .book-card, .back-button, nav ul li a {
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for all theme-related changes */
+}
+
+header {
+    background-color: var(--header-background);
+    color: var(--header-text-color);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 110%; /* Ensure the header spans the full width */
+    position: relative; /* Ensure it stays in the normal document flow */
+    left: -20px; /* Adjust left position to align with the body */
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: var(--header-text-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: var(--button-hover-background);
+    border-radius: 5px;
+}
+
+/* Dropdown Menu */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    background-color: var(--header-background);
+    padding: 10px;
+    border-radius: 5px;
+    list-style: none;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul li ul li {
+    margin: 5px 0;
+}
+
+nav ul li ul li a {
+    padding: 5px;
+    display: block;
+    text-align: left;
+}
+
+/* Main Content */
+main {
+    margin: 20px auto;
+    max-width: 800px;
+    background: --card-background; /* Use a variable for the content background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main h2, main h3 {
+    color: var(--title-color); /* Apply the title color to headings in the main content */
+    margin-bottom: 15px;
+}
+
+main p {
+    margin-bottom: 15px;
+}
+
+main ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+main ul li {
+    margin-bottom: 10px;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--footer-background, var(--header-background)); /* Use a lighter background for the footer */
+    color: var(--footer-text-color, var(--text-color)); /* Adjust text color for better contrast */
+    margin-top: 20px;
+    width: 110%; /* Ensure the header spans the full width */
+    position: relative; /* Ensure it stays in the normal document flow */
+    left: -20px; /* Adjust left position to align with the body */
+}
+
+footer p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+footer a {
+    color: var(--footer-link-color, var(--header-text-color));
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+/* Buttons and Links */
+a {
+    color: var(--button-background);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--button-hover-background);
+    text-decoration: underline;
+}
+
+/* Book List Styles */
+.book-list {
+    list-style: none; /* Remove list decoration */
+    display: flex; /* Use flexbox for horizontal alignment */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    gap: 15px; /* Adjust spacing between items */
+    justify-content: center; /* Center the items in the row */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+/* Book Container Styles */
+.book-container {
+    display: flex;
+    justify-content: center; /* Center the book-card inside the container */
+    align-items: center; /* Vertically align the content */
+    padding: 10px; /* Add spacing around the container */
+    list-style: none; /* Remove default list styling */
+}
+
+/* Book Card Styles */
+.book-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--card-border-color);
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 210px; /* Fixed width for consistent sizing */
+    text-align: center; /* Center-align content */
+    padding: 15px; /* Add padding inside the card */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Ensure content stays inside the card */
+}
+
+.book-card img {
+    width: 100%; /* Ensure the image fits within the card's width */
+    height: auto; /* Maintain the original aspect ratio */
+    border-radius: 5px; /* Slightly rounded corners for the image */
+    margin-bottom: 10px; /* Add spacing below the image */
+}
+
+.book-card h3 {
+    font-size: 1.2rem; /* Slightly larger font size for the title */
+    font-weight: bold; /* Bold the title */
+    color: var(--text-color);
+    margin-bottom: 10px; /* Add spacing below the title */
+}
+
+.book-card .view-series {
+    display: inline-block;
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    text-decoration: none;
+    padding: 8px 12px; /* Adjust padding for a balanced button size */
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.book-card .view-series:hover {
+    background-color: var(--button-hover-background);
+}
+
+/* Hover Effect for Book Card */
+.book-card:hover {
+    background-color: var(--card-border-color); /* Use the border color for hover effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Back Button Styles */
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--button-hover-background);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .book-card {
+        width: 100%; /* Make the cards full-width on smaller screens */
+    }
+
+    .book-list {
+        gap: 15px; /* Reduce spacing between items on smaller screens */
+    }
+}

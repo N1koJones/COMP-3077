@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Page 1</title>
+    <script>
+        function updateFullName() {
+            const firstName = document.getElementById('first_name').value;
+            const lastName = document.getElementById('last_name').value;
+            document.getElementById('full_name').value = `${firstName} ${lastName}`.trim();
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const startTime = localStorage.getItem('startTime');
+            const endTime = new Date().getTime();
+            const timeSpent = Math.round((endTime - startTime) / 60000);
+            localStorage.setItem('timeSpent', timeSpent);
+
+            const firstName = document.getElementById('first_name').value;
+            const lastName = document.getElementById('last_name').value;
+            const referrer = window.location.pathname.split('/').pop();
+            const url = `clientpage2.html?first_name=${encodeURIComponent(firstName)}&last_name=${encodeURIComponent(lastName)}&referrer=${encodeURIComponent(referrer)}`;
+            window.location.href = url;
+        }
+
+        window.onload = function() {
+            localStorage.setItem('startTime', new Date().getTime());
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" oninput="updateFullName()"><br><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" oninput="updateFullName()"><br><br>
+        <label for="full_name">Full Name:</label>
+        <input type="text" id="full_name" name="full_name" readonly><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Page 2</title>
+    <script>
+        // Getting date
+        function getGreeting() {
+            const hours = new Date().getHours();
+            if (hours >= 19) {
+                return "Good evening";
+            } else if (hours >= 12) {
+                return "Good afternoon";
+            } else {
+                return "Good morning";
+            }
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const firstName = urlParams.get('first_name');
+            const lastName = urlParams.get('last_name');
+            const fullName = `${firstName} ${lastName}`.trim();
+            const timeSpent = localStorage.getItem('timeSpent');
+            const greeting = getGreeting();
+            const referrer = urlParams.get('referrer') || 'unknown page';
+
+            document.getElementById('message').innerText = `${greeting} ${fullName}. \nYou were referred from "${referrer}" file. \nThe total time you spent on the form was "${timeSpent} minutes".`;
+        }
+    </script>
+</head>
+<body>
+    <p id="message"></p>
+</body>
+</html>
+
+<!--
+
+Time stamp in JSON Answer --------
+You can store it in a JSON file. 
+
+You would have to use a PHP script to handle the form submission and store it online within a JSON 
+file. You can use a handlesubmit function to handle the form submission via a POST request and 
+update the timespent in client page two to access the JSON file and display the time spent on the
+second page.
+
+PHP is the how you can modify and access the data which would be stored locally on the myweb server
+
+-->
