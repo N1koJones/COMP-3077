@@ -20,6 +20,7 @@ $query->execute(['Action']);
 $books = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <main>
+    <a href="javascript:history.back()" class="back-button">Back</a>
     <h2>Action Manga</h2>
     <ul class="book-list">
         <?php if (count($books) > 0): ?>
